@@ -1,0 +1,197 @@
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+body {
+margin: 0;
+font-family: roboto;
+}
+.txtinput {
+  background-image: url('https://fonts.gstatic.com/s/i/materialicons/password/v6/24px.svg?download=true');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 40%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  border-radius: 10px;
+    transition: 1s;
+    font-family: roboto;
+    /* text-align: center; */
+}
+.txtinput:hover {
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
+  }
+  }
+.txtinput:active {
+   border: none;
+   
+  }
+  .submit, .button {
+  background-color: black; /* Red */
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  margin: 5px 3px;
+  cursor: pointer;
+  font-family: roboto;
+  border-radius: 3px;
+  }
+  .overlay {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background: black;
+  padding: 50px;
+  border-radius: 10px;
+  color: white;
+  opacity: 0.5;
+  height: 30%; 
+  
+  }
+    .text-overlay {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background: none;
+  padding: 50px;
+  border-radius: 10px;
+  color: white;
+  
+  }
+
+.bg {
+  /* The image used */
+  background-image: url("https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+  /* CONTEXT MENU CSS START */
+.center{
+  text-align: center;
+}
+.menu {
+  width: 200px;
+  z-index: 1;
+  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  display: none;
+  transition: 0.2s display ease-in;
+  border-radius: 5px;
+  background: white;
+}
+  .menu-option {
+    list-style: none;
+    cursor: pointer;    
+    }
+
+  
+  .next{
+    color:green;
+  }
+  
+  &[disabled="false"]:hover{
+    .next{
+      color: red;
+      animation: move 0.5s;
+      animation-iteration-count: 2;
+    }
+  }
+}
+
+@keyframes move{
+  from{
+    transform: translate(0%);
+  }
+  50%{
+    transform: translate(-40%);
+  }
+  to{
+    transform: transform(0%);
+  }
+  /* CONTEXT MENU CSS END */
+  
+
+
+</style>
+
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
+<body>
+<div class="bg"></div>
+
+
+  
+
+  <div class="overlay"></div>
+  <div class="text-overlay">  <center>
+<span style="opacity: 1;">
+<h1 style="opacity: 1.0;">Example</h1>
+  <p>You were loged out.</p>
+
+</center>
+</div>
+     <!--Context Menu Start-->
+<div class="menu">
+  <ul class="menu-options">
+ <b> </b>
+    <p style="cursor: default;" class="menu-option">Powered By H&A Productions Login</p>
+    
+    <p onclick="location.reload();" class="menu-option"><span class="material-icons">refresh</span>&nbsp;Reload Page</p>
+    
+    <p onclick="window.print();" class="menu-option"><span class="material-icons">print</span>&nbsp;Print Page</p>
+  </ul>
+</div>
+<!--Context Menu End-->
+      <script>
+      // Context Menu Script //
+const menu = document.querySelector(".menu");
+const menuOption = document.querySelector(".menu-option");
+let menuVisible = false;
+
+const toggleMenu = command => {
+  menu.style.display = command === "show" ? "block" : "none";
+  menuVisible = !menuVisible;
+};
+
+const setPosition = ({ top, left }) => {
+  menu.style.left = `${left}px`;
+  menu.style.top = `${top}px`;
+  toggleMenu("show");
+};
+
+window.addEventListener("click", e => {
+  if (menuVisible) toggleMenu("hide");
+});
+
+menuOption.addEventListener("click", e => {
+  console.log("mouse-option", e.target.innerHTML);
+});
+
+window.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  const origin = {
+    left: e.pageX,
+    top: e.pageY
+  };
+  setPosition(origin);
+  return false;
+});
+</script>
+  
